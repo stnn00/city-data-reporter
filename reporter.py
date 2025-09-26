@@ -38,18 +38,27 @@ def get_city_data(city):
         response = requests.get(url, params=parameters, timeout=5)
         response.raise_for_status() # Raises an HTTPError for 4xx or 5xx responses
         data = response.json()
-        return data
+
+        key_city_data = {
+            "city": data.get("name"),
+            "temperature": data["main"]["temp"],
+            "description": data["weather"][0]["description"],
+            "humidity": data["main"]["humidity"]
+        }
+        return key_city_data
+
     except requests.exceptions.RequestException as err:
         print(f"An unexpected error occurred: {err}")
         return None
 
 
 if __name__ == "__main__":
+    # Prompt user to enter a city, retrieves and returns key data.
     city = get_city()
     print(f"User entered: {city}")
-    weather_data = get_city_data(city)
-    if weather_data:
+    city_data = get_city_data(city)
+    if city_data:
         print("City data retrieved successfully.")
-        print(weather_data)
+        print(city_data)
     else:
         print("Failed to retrieve data. Check city name or API key.")
