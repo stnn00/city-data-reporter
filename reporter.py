@@ -74,7 +74,7 @@ def get_city_data(city):
             'country': data['sys']['country'],
             'temperature': data['main']['temp'],
             'humidity': data['main']['humidity'],
-            'description': data['weather'][0]['description']
+            'description': data['weather'][0]['description'].capitalize()
         }
 
         return key_city_data
