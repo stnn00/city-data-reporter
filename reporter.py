@@ -15,6 +15,7 @@ import requests # HTTP requests to OpenWeatherMap API
 
 load_dotenv() # Load API key from .env
 API_KEY = os.getenv('API_KEY')
+FILENAME = 'city_data.csv'
 
 def get_city():
     """
@@ -51,7 +52,7 @@ def get_city_data(city):
             and 'description' if successful.
         None: Returned if JSON parsing fails or the city is invalid.
     """
-    url = "http://api.openweathermap.org/data/2.5/weather"
+    url = 'http://api.openweathermap.org/data/2.5/weather'
     parameters = {
         'q': city,
         'appid': API_KEY,
@@ -103,7 +104,7 @@ def display_data(city_data):
         print("Failed to retrieve data. Check city name or API key.")
 
 
-def write_to_csv(city_data, filename="city_data.csv"):
+def write_to_csv(city_data, filename=FILENAME):
     """
     Writes extracted city data to a CSV file with column headers.
 
@@ -136,7 +137,7 @@ def write_to_csv(city_data, filename="city_data.csv"):
         print("Data failed to write.")
 
 
-def read_csv(filename="city_data.csv"):
+def read_csv(filename=FILENAME):
     """
     Reads and reports data from a CSV file.
 
