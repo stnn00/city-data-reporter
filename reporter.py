@@ -68,7 +68,7 @@ def get_city_data(city):
         return key_city_data
 
     except requests.exceptions.RequestException as err:
-        print(f"An unexpected error occurred: {err}")
+        print(f"An unexpected error occurred while retrieving data: {err}")
         return None
 
 
@@ -104,18 +104,22 @@ def write_to_csv(city_data, filename="city_data.csv"):
     if city_data:
         headers = ["City", "Country", "Temperature", "Humidity (%)", "Description"]
 
-        with open(filename, mode="w") as file:
-            writer = csv.writer(file)
-            writer.writerow(headers)
-            writer.writerow([
-                city_data["city"],
-                city_data["country"],
-                round(city_data["temperature"]),
-                city_data["humidity"],
-                city_data["description"].capitalize()
-            ])
+        try:
+            with open(filename, mode="w") as file:
+                writer = csv.writer(file)
+                writer.writerow(headers)
+                
+                writer.writerow([
+                    city_data["city"],
+                    city_data["country"],
+                    round(city_data["temperature"]),
+                    city_data["humidity"],
+                    city_data["description"].capitalize()
+                ])
 
-        print(f"\nData for {city_data['city']} written to {filename} successfully.")
+            print(f"\nData for {city_data['city']} written to {filename} successfully.")
+        except IOError as e:
+            print(f"An error occured while writing to CSV file: {e}")
     else:
         print("Data failed to write.")
 
