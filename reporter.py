@@ -155,17 +155,20 @@ def read_csv(filename="city_data.csv"):
 
 
 if __name__ == "__main__":
-    # Prompt user to enter city name
-    city = get_city()
+    try:
+        # Prompt user to enter city name
+        city = get_city()
 
-    # Pull data for the specified city
-    city_data = get_city_data(city)
+        # Pull data for the specified city
+        city_data = get_city_data(city)
     
-    # Print data to the terminal
-    display_data(city_data)
+        # Print data to the terminal
+        display_data(city_data)
 
-    # Write and save data to 'city_data.csv'
-    write_to_csv(city_data)
+        # Write and save data to 'city_data.csv'
+        write_to_csv(city_data)
 
-    # Read and report data from 'city_data.csv'
-    read_csv("city_data.csv")
+        # Read and report data from 'city_data.csv'
+        read_csv("city_data.csv")
+    except Exception as e:
+        print(f"An unexpected error occurred during testing: {e}")
