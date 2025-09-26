@@ -18,7 +18,12 @@ load_dotenv() # Load API key from .env
 API_KEY = os.getenv("API_KEY")
 
 def get_city():
-    """Prompt user to enter a city name until non-empty city name is provided."""
+    """
+    Prompt the user to enter a city name until non-empty string is provided.
+
+    Returns:
+        str: The city name entered by the user.
+    """
     while True:
         city = input("Enter a city name: ").strip()
         if city:
@@ -28,15 +33,17 @@ def get_city():
 
 def get_city_data(city):
     """
-    Retrieve key data for user-specified city using OpenWeatherMap API.
+    Retrieves key data for a city from the OpenWeatherMap API.
 
-    Sends a GET request to the API and parses JSON response into a dictionary.
-    Returns a dictionary containing:
-        - city name
-        - country code
-        - current temperature (in Celsius)
-        - humidity (%)
-        - weather conditions (e.g., "Scattered clouds")
+    Sends a GET request to API, parses the response JSON, and extracts key data.
+
+    Args:
+        city (str): The city name to retrieve data for.
+
+    Returns:    
+        dict: Dictionary with keys 'city', 'country', 'temperature', 'humidity',
+              and 'description'.
+        None: Returned if the API request fails or an error occurs.
     """
     url = "http://api.openweathermap.org/data/2.5/weather"
     parameters = {
@@ -68,10 +75,13 @@ def get_city_data(city):
 
 def display_data(city_data):
     """
-    Prints a formatted summary for the key data of the user-specified city.
+    Prints a formatted summary for a city's key data to the terminal.
 
-    Temperature is rounded to the nearest whole number for readability.
-    Weather description is capitalized for clarity.
+    Rounds temperature to the nearest whole number and capitalizes the
+    weather description for improved readability.
+
+    Args:
+        city_data (dict): Dictionary containing the city's key information.
     """
     if city_data:
         print(f"\nCity: {city_data['city']}, {city_data['country']}")
@@ -87,11 +97,15 @@ def write_to_csv(city_data, filename="city_data.csv"):
     Writes extracted city data to a CSV file with column headers.
 
     Uses a context manager ('with' statement) for safe file handling.
+
+    Args:
+        city_data (dict): Dictionary containing the city's key information.
+        filename (str, optional): Name of the output CSV file. Defaults to 'city_data.csv'.
     """
     if city_data:
         headers = ["City", "Country", "Temperature (°C)", "Humidity (%)", "Description"]
 
-        with open(filename, mode='w') as file:
+        with open(filename, mode="w") as file:
             writer = csv.writer(file)
             writer.writerow(headers)
             writer.writerow([
@@ -108,7 +122,7 @@ def write_to_csv(city_data, filename="city_data.csv"):
 
 
 if __name__ == "__main__":
-    # Prompt user to enter a city, retrieves and prints key data.
+    # Prompt user to enter a city, retrieves and prints key data
     city = get_city()
     city_data = get_city_data(city)
     display_data(city_data)
