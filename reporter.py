@@ -181,7 +181,7 @@ if __name__ == "__main__":
         # Write and save data to FILENAME
         write_to_csv(city_data)
 
-        # Read and report data from FILENAME
-        read_csv(filename=FILENAME)
+        # Read and report data from default FILENAME
+        read_csv()
     except Exception as e:
         print(f"An unexpected error occurred during testing: {e}")
