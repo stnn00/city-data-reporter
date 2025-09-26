@@ -8,6 +8,7 @@ writes the data to a CSV file called city_data.csv
 
 # Standard library
 import os # Retrieve API key from system environment
+import csv # Read and write CSV files
 
 # Third-party libraries
 from dotenv import load_dotenv # Access API key from .env file
@@ -76,9 +77,34 @@ def display_data(city_data):
         print(f"\nCity: {city_data['city']}, {city_data['country']}")
         print(f"Temperature: {round(city_data['temperature'])}°C")
         print(f"Humidity: {city_data['humidity']}%")
-        print(f"Weather Conditions: {city_data['description'].capitalize()}")
+        print(f"Description: {city_data['description'].capitalize()}")
     else:
         print("Failed to retrieve data. Check city name or API key.")
+
+
+def write_to_csv(city_data, filename="city_data.csv"):
+    """
+    Writes extracted city data to a CSV file with column headers.
+
+    Uses a context manager ('with' statement) for safe file handling.
+    """
+    if city_data:
+        headers = ["City", "Country", "Temperature (°C)", "Humidity (%)", "Description"]
+
+        with open(filename, mode='w') as file:
+            writer = csv.writer(file)
+            writer.writerow(headers)
+            writer.writerow([
+                city_data["city"],
+                city_data["country"],
+                round(city_data["temperature"]),
+                city_data["humidity"],
+                city_data["description"].capitalize()
+            ])
+
+        print(f"\nData for {city_data['city']} written to {filename} successfully.")
+    else:
+        print("Data failed to write.")
 
 
 if __name__ == "__main__":
