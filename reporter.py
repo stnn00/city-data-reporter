@@ -16,7 +16,7 @@ from dotenv import load_dotenv # Access API key from .env file
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
-def input_city():
+def get_city():
     """Prompt user to enter a city name until non-empty city name is provided."""
     while True:
         city = input("Enter a city name: ").strip() # Remove leading/trailing whitespaces
@@ -26,5 +26,5 @@ def input_city():
 
 
 if __name__ == "__main__":
-    city = input_city()
+    city = get_city()
     print(f"User entered: {city}")
