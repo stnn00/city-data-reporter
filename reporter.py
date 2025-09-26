@@ -102,7 +102,7 @@ def write_to_csv(city_data, filename="city_data.csv"):
         filename (str, optional): Name of the output CSV file. Defaults to 'city_data.csv'.
     """
     if city_data:
-        headers = ["City", "Country", "Temperature (°C)", "Humidity (%)", "Description"]
+        headers = ["City", "Country", "Temperature", "Humidity (%)", "Description"]
 
         with open(filename, mode="w") as file:
             writer = csv.writer(file)
@@ -120,6 +120,26 @@ def write_to_csv(city_data, filename="city_data.csv"):
         print("Data failed to write.")
 
 
+def read_csv(filename="city_data.csv"):
+    try:
+        with open(filename, mode="r") as file:
+            reader = csv.DictReader(file)
+            cities = list(reader)
+        
+        count = len(cities)
+        print(f"\nTotal number of cities in {filename}: {count}")
+
+        if count:
+            print("Cities and their temperatures:")
+            for city in cities:
+                print(f"- {city['City']}: {city['Temperature']}°C")
+        else:
+            print("No data found.")
+    
+    except FileNotFoundError:
+        print(f"{filename} not found. Please check directory or file name.")
+
+
 if __name__ == "__main__":
     # Prompt user to enter city name
     city = get_city()
@@ -132,4 +152,6 @@ if __name__ == "__main__":
 
     # Write and save data to 'city_data.csv'
     write_to_csv(city_data)
-    
+
+    # Read and report data from 'city_data.csv'
+    read_csv("city_data.csv")
