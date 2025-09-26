@@ -159,10 +159,10 @@ def read_csv(filename=FILENAME):
             print("Cities and their temperatures:")
             for city in cities:
                 try:
-                    temp = float(city['Temperature (C)'])
+                    temp = round(float(city['Temperature (C)']))
                 except ValueError:
                     temp = 'N/A' # invalid or missing temperature
-                print(f"- {city['City']}: {round(temp)}°C")
+                print(f"- {city['City']}: {temp}°C")
         else:
             print("No data found.")
     
