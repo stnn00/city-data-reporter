@@ -141,7 +141,8 @@ def read_csv(filename=FILENAME):
     """
     Reads and reports data from a CSV file.
 
-    Prints the current number of cities and temperatures in a CSV file.
+    Prints the current number of cities and their rounded temperatures.
+    Keeps raw float values in the file.
 
     Args:
         filename(str, optional): Name or path of CSV file. Defaults to FILENAME.
@@ -157,7 +158,11 @@ def read_csv(filename=FILENAME):
         if count:
             print("Cities and their temperatures:")
             for city in cities:
-                print(f"- {city['City']}: {city['Temperature (C)']}°C")
+                try:
+                    temp = float(city['Temperature (C)'])
+                except ValueError:
+                    temp = 'N/A' # invalid or missing temperature
+                print(f"- {city['City']}: {round(temp)}°C")
         else:
             print("No data found.")
     
