@@ -125,7 +125,7 @@ def write_to_csv(city_data, filename=FILENAME):
                 writer.writerow([
                     city_data['city'],
                     city_data['country'],
-                    round(city_data['temperature']),
+                    city_data['temperature'],
                     city_data['humidity'],
                     city_data['description']
                 ])
