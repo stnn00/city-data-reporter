@@ -2,7 +2,7 @@
 reporter.py
 
 Command-line application that uses live data to report data for a city using OpenWeatherMap API.
-Displays a summary in the terminal and exports results to 'city_data.csv'.
+Displays a summary in the terminal and exports results to FILENAME.
 """
 
 # Standard library
@@ -112,7 +112,7 @@ def write_to_csv(city_data, filename=FILENAME):
 
     Args:
         city_data (dict): Dictionary containing the city's key information.
-        filename (str, optional): Name of the output CSV file. Defaults to 'city_data.csv'.
+        filename (str, optional): Name of the output CSV file. Defaults to FILENAME.
     """
     if city_data:
         headers = ['City', 'Country', 'Temperature (C)', 'Humidity (%)', 'Description']
@@ -144,7 +144,7 @@ def read_csv(filename=FILENAME):
     Prints the current number of cities and temperatures in a CSV file.
 
     Args:
-        filename(str, optional): Name or path of CSV file. Defaults to 'city_data.csv'.
+        filename(str, optional): Name or path of CSV file. Defaults to FILENAME.
     """
     try:
         with open(filename, mode="r") as file:
@@ -178,10 +178,10 @@ if __name__ == "__main__":
         # Print data to the terminal
         display_data(city_data)
 
-        # Write and save data to 'city_data.csv'
+        # Write and save data to FILENAME
         write_to_csv(city_data)
 
-        # Read and report data from 'city_data.csv'
-        read_csv("city_data.csv")
+        # Read and report data from FILENAME
+        read_csv(filename=FILENAME)
     except Exception as e:
         print(f"An unexpected error occurred during testing: {e}")
