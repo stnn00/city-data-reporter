@@ -37,7 +37,7 @@ def get_city_data(city):
     try:
         response = requests.get(url, params=parameters, timeout=5)
         response.raise_for_status() # Raises an HTTPError for 4xx or 5xx responses
-        data = response.json()
+        data = response.json() # Uses JSON library to parse the response from API into dictionary
 
         key_city_data = {
             "city": data.get("name"),
@@ -46,20 +46,33 @@ def get_city_data(city):
             "humidity": data["main"]["humidity"],
             "description": data["weather"][0]["description"]
         }
+
         return key_city_data
 
     except requests.exceptions.RequestException as err:
         print(f"An unexpected error occurred: {err}")
         return None
+    
+def display_data(city_data):
+    """
+    Prints a formatted summary for the key data of the user-specified city.
+
+    Temperature is rounded to the nearest whole number for readability.
+    The weather description is capitalized for clarity.
+    """
+    if city_data:
+        print(f"\nCity Name: {city_data['city']}")
+        print(f"Country: {city_data['country']}")
+        print(f"Temperature: {round(city_data['temperature'])}°C")
+        print(f"Humidity: {city_data['humidity']}%")
+        print(f"Weather Conditions: {city_data['description'].capitalize()}")
+    else:
+        print("Failed to retrieve data. Check city name or API key.")
 
 
 if __name__ == "__main__":
-    # Prompt user to enter a city, retrieves and returns key data.
+    # Prompt user to enter a city, retrieves and prints key data.
     city = get_city()
-    print(f"User entered: {city}")
     city_data = get_city_data(city)
-    if city_data:
-        print("City data retrieved successfully.")
-        print(city_data)
-    else:
-        print("Failed to retrieve data. Check city name or API key.")
+    display_data(city_data)
+    
