@@ -31,7 +31,7 @@ def get_city_data(city):
     parameters = {
         "q": city,
         "appid": API_KEY,
-        "units": "metric"
+        "units": "metric" # Temperature in Celsius
     }
 
     try:
@@ -41,9 +41,10 @@ def get_city_data(city):
 
         key_city_data = {
             "city": data.get("name"),
+            "country": data["sys"]["country"],
             "temperature": data["main"]["temp"],
-            "description": data["weather"][0]["description"],
-            "humidity": data["main"]["humidity"]
+            "humidity": data["main"]["humidity"],
+            "description": data["weather"][0]["description"]
         }
         return key_city_data
 
