@@ -1,9 +1,8 @@
 """
 reporter.py
 
-A command-line application that uses live data to report
-information about a city using OpenWeatherMap API,
-writes the data to a CSV file called city_data.csv
+Command-line application that uses live data to report data for a city using OpenWeatherMap API.
+Displays a summary in the terminal and exports results to 'city_data.csv'.
 """
 
 # Standard library
@@ -122,7 +121,15 @@ def write_to_csv(city_data, filename="city_data.csv"):
 
 
 if __name__ == "__main__":
-    # Prompt user to enter a city, retrieves and prints key data
+    # Prompt user to enter city name
     city = get_city()
+
+    # Pull data for the specified city
     city_data = get_city_data(city)
+    
+    # Print data to the terminal
     display_data(city_data)
+
+    # Write and save data to 'city_data.csv'
+    write_to_csv(city_data)
+    
