@@ -54,7 +54,12 @@ def get_city_data(city):
     try:
         response = requests.get(url, params=parameters, timeout=5)
         response.raise_for_status() # Raises an HTTPError for 4xx or 5xx responses
-        data = response.json() # Uses JSON library to parse the response from API into dictionary
+
+        try:
+            data = response.json() # Parses JSON into Python dict
+        except ValueError as e:
+            print(f"Failed to parse JSON: {e}")
+            return None
 
         # Pulls only key data from the API response
         key_city_data = {
