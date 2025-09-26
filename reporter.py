@@ -108,7 +108,7 @@ def write_to_csv(city_data, filename="city_data.csv"):
             with open(filename, mode="w") as file:
                 writer = csv.writer(file)
                 writer.writerow(headers)
-                
+
                 writer.writerow([
                     city_data["city"],
                     city_data["country"],
@@ -150,6 +150,8 @@ def read_csv(filename="city_data.csv"):
     
     except FileNotFoundError:
         print(f"{filename} not found. Please check directory or file name.")
+    except IOError as e:
+        print(f"Error occurred while reading the CSV file: {e}")
 
 
 if __name__ == "__main__":
