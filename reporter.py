@@ -14,7 +14,7 @@ from dotenv import load_dotenv # Access API key from .env file
 import requests # HTTP requests to OpenWeatherMap API
 
 load_dotenv() # Load API key from .env
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv('API_KEY')
 
 def get_city():
     """
@@ -34,21 +34,28 @@ def get_city_data(city):
     """
     Retrieves key data for a city from the OpenWeatherMap API.
 
-    Sends a GET request to API, parses the response JSON, and extracts key data.
+    Sends a GET request to API, parses the response JSON, and extracts key data:
+    - city name
+    - country code
+    - temperature
+    - humidity
+    - weather description
+
+    Prevents crashes on invalid city names and malformed API JSON responses.
 
     Args:
         city (str): The city name to retrieve data for.
 
     Returns:    
         dict: Dictionary with keys 'city', 'country', 'temperature', 'humidity',
-            and 'description'.
-        None: Returned if the API request fails or an error occurs.
+            and 'description' if successful.
+        None: Returned if JSON parsing fails or the city is invalid.
     """
     url = "http://api.openweathermap.org/data/2.5/weather"
     parameters = {
-        "q": city,
-        "appid": API_KEY,
-        "units": "metric" # Temperature in Celsius
+        'q': city,
+        'appid': API_KEY,
+        'units': 'metric' # Temperature in Celsius
     }
 
     try:
@@ -63,11 +70,11 @@ def get_city_data(city):
 
         # Pulls only key data from the API response
         key_city_data = {
-            "city": data.get("name"),
-            "country": data["sys"]["country"],
-            "temperature": data["main"]["temp"],
-            "humidity": data["main"]["humidity"],
-            "description": data["weather"][0]["description"]
+            'city': data.get('name'),
+            'country': data['sys']['country'],
+            'temperature': data['main']['temp'],
+            'humidity': data['main']['humidity'],
+            'description': data['weather'][0]['description']
         }
 
         return key_city_data
@@ -107,24 +114,24 @@ def write_to_csv(city_data, filename="city_data.csv"):
         filename (str, optional): Name of the output CSV file. Defaults to 'city_data.csv'.
     """
     if city_data:
-        headers = ["City", "Country", "Temperature", "Humidity (%)", "Description"]
+        headers = ['City', 'Country', 'Temperature (C)', 'Humidity (%)', 'Description']
 
         try:
-            with open(filename, mode="w") as file:
+            with open(filename, mode='w') as file:
                 writer = csv.writer(file)
                 writer.writerow(headers)
 
                 writer.writerow([
-                    city_data["city"],
-                    city_data["country"],
-                    round(city_data["temperature"]),
-                    city_data["humidity"],
-                    city_data["description"].capitalize()
+                    city_data['city'],
+                    city_data['country'],
+                    round(city_data['temperature']),
+                    city_data['humidity'],
+                    city_data['description'].capitalize()
                 ])
 
             print(f"\nData for {city_data['city']} written to {filename} successfully.")
         except IOError as e:
-            print(f"An error occured while writing to CSV file: {e}")
+            print(f"An error occurred while writing to CSV file: {e}")
     else:
         print("Data failed to write.")
 
@@ -149,7 +156,7 @@ def read_csv(filename="city_data.csv"):
         if count:
             print("Cities and their temperatures:")
             for city in cities:
-                print(f"- {city['City']}: {city['Temperature']}°C")
+                print(f"- {city['City']}: {city['Temperature (C)']}°C")
         else:
             print("No data found.")
     
