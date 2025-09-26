@@ -41,7 +41,7 @@ def get_city_data(city):
 
     Returns:    
         dict: Dictionary with keys 'city', 'country', 'temperature', 'humidity',
-              and 'description'.
+            and 'description'.
         None: Returned if the API request fails or an error occurs.
     """
     url = "http://api.openweathermap.org/data/2.5/weather"
@@ -121,6 +121,14 @@ def write_to_csv(city_data, filename="city_data.csv"):
 
 
 def read_csv(filename="city_data.csv"):
+    """
+    Reads and reports data from a CSV file.
+
+    Prints the current number of cities and temperatures in a CSV file.
+
+    Args:
+        filename(str, optional): Name or path of CSV file. Defaults to 'city_data.csv'.
+    """
     try:
         with open(filename, mode="r") as file:
             reader = csv.DictReader(file)
