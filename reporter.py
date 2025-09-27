@@ -6,14 +6,14 @@ Displays a summary in the terminal and exports results to FILENAME.
 """
 
 # Standard library
-import os # Retrieve API key from system environment
-import csv # Read and write CSV files
+import os  # Retrieve API key from system environment
+import csv  # Read and write CSV files
 
 # Third-party libraries
-from dotenv import load_dotenv # Access API key from .env file
-import requests # HTTP requests to OpenWeatherMap API
+from dotenv import load_dotenv  # Access API key from .env file
+import requests  # HTTP requests to OpenWeatherMap API
 
-load_dotenv() # Load API key from .env
+load_dotenv()  # Load API key from .env
 API_KEY = os.getenv('API_KEY')
 FILENAME = 'city_data.csv'
 
@@ -56,15 +56,15 @@ def get_city_data(city):
     parameters = {
         'q': city,
         'appid': API_KEY,
-        'units': 'metric' # Temperature in Celsius
+        'units': 'metric'  # Temperature in Celsius
     }
 
     try:
         response = requests.get(url, params=parameters, timeout=5)
-        response.raise_for_status() # Raises an HTTPError for 4xx or 5xx responses
+        response.raise_for_status()  # Raises an HTTPError for 4xx or 5xx responses
 
         try:
-            data = response.json() # Parses JSON into Python dict
+            data = response.json()  # Parses JSON into Python dict
         except ValueError as e:
             print(f"Failed to parse JSON: {e}")
             return None
@@ -145,7 +145,7 @@ def read_csv(filename=FILENAME):
     Keeps raw float values in the file.
 
     Args:
-        filename(str, optional): Name or path of CSV file. Defaults to FILENAME.
+        filename (str, optional): Name or path of CSV file. Defaults to FILENAME.
     """
     try:
         with open(filename, mode="r") as file:
@@ -161,7 +161,7 @@ def read_csv(filename=FILENAME):
                 try:
                     temp = round(float(city['Temperature (C)']))
                 except ValueError:
-                    temp = 'N/A' # invalid or missing temperature
+                    temp = 'N/A'  # invalid or missing temperature
                 print(f"- {city['City']}: {temp}°C")
         else:
             print("No data found.")
