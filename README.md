@@ -48,7 +48,7 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
         API_KEY=your_api_key_here
         ```
 
-    ***     Do NOT share your API key publicly.***
+        ***Do NOT share your API key publicly.***
 
 4. **Clone the repository**.
    ```bash
@@ -65,6 +65,7 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
     ```
 
 2. **Enter a city name when prompted.**
+
     Example of Prompt:
     ```text
     Enter a city name:
