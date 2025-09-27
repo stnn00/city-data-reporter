@@ -132,7 +132,7 @@ def write_to_csv(city_data, filename=FILENAME):
                     city_data['description']  # Stores raw description without capitalization
                 ])
 
-            print(f"\n--- CVS Export ---")
+            print(f"\n--- CSV Export ---")
             print(f"Data for {city_data['city']} written to {filename} successfully.")
         except IOError as e:
             print(f"An error occurred while writing to CSV file: {e}")
@@ -156,7 +156,7 @@ def read_csv(filename=FILENAME):
             cities = list(reader)
         
         count = len(cities)
-        print(f"\n--- CVS Summary ---")
+        print(f"\n--- CSV Summary ---")
         print(f"Total number of cities in {filename}: {count}")
 
         if count:
