@@ -13,3 +13,9 @@ All functionality is contained in a single Python Script: `reporter.py`
 - CSV file includes column headers for spreadsheet integration.
 - Automatically loads API key from a `.env` file for security.
 - Simple, user-friendly terminal interface
+
+## Demonstration
+
+Video on Youtube to demonstrate and explain code `reporter.py`:
+
+- *INSERT_LINK_HERE*
