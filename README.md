@@ -10,8 +10,8 @@ All functionality is contained in a single Python Script: `reporter.py`
 
 - Access real-time weather data for any city.
 - Display key information in a clear, formatted output: city, country, temperature, humidity, and weather description in a readable format.
-- Export collected raw weather data to a CSV file.
-- Temperatures are rounded for terminal readability, but precise values are preserved in the CSV.
+- Export collected raw weather data to a `.csv` file (default file is `city_data.csv`; currently, it overwrites the file each time, it does **not** append).
+- Temperatures are rounded for terminal readability, but precise values are preserved in the `.csv` file.
 - CSV file includes column headers for spreadsheet integration.
 - Automatically loads API key from a `.env` file for security.
 - Simple, user-friendly terminal interface.
@@ -73,7 +73,7 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
 
 3. **The program will**:
     - Display the city's key data to the terminal.
-    - Export the raw data to `city_data.csv`.
+    - Export the raw data to `city_data.csv`. (note: this will overwrite any existing file with the same name).
 
 **Example Terminal Output**:
 ```text
@@ -99,3 +99,4 @@ Cities and their temperatures:
 ## Notes
 
 - Ensure your `.env` file is in the same directory as `reporter.py`.
+- The program exports data to `city_data.csv` by default. **This file will be overwritten each time the script runs; it does not append.**
