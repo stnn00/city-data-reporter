@@ -91,6 +91,7 @@ def display_data(city_data):
 
     Rounds temperature to the nearest whole number and capitalizes the
     weather description for improved readability.
+    Raw description stored in CSV remains unmodified.
 
     Args:
         city_data (dict): Dictionary containing the city's key information.
@@ -125,9 +126,9 @@ def write_to_csv(city_data, filename=FILENAME):
                 writer.writerow([
                     city_data['city'],
                     city_data['country'],
-                    city_data['temperature'],
+                    city_data['temperature'],  # Stores raw float
                     city_data['humidity'],
-                    city_data['description']
+                    city_data['description']  # Stores raw description without capitalization
                 ])
 
             print(f"\nData for {city_data['city']} written to {filename} successfully.")
