@@ -29,6 +29,7 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
 ## Installation
 
 1. **Install Python 3**
+
     Ensure Python 3 is installed on your system: [Python](https://www.python.org/downloads/)
     
 2. **Install required third-party packages**:
@@ -47,7 +48,7 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
         API_KEY=your_api_key_here
         ```
 
-    *Do NOT share your API key publicly.*
+    ***     Do NOT share your API key publicly.***
 
 4. **Clone the repository**  
    ```bash
@@ -58,14 +59,14 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
    ---
 
 ## Instructions
-1. **Run the program:**
+1. **Run the program**:
     ```bash
     python reporter.py
     ```
 
 2. **Enter a city name when prompted.**
 
-3. **The program will:**
+3. **The program will**:
     - Display the city's key data to the terminal.
     - Export the raw data to `city_data.csv`.
 
