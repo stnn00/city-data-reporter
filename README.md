@@ -34,6 +34,8 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
     
 2. **Install required third-party packages**:
 
+    Install **both** `requests` and `python-dotenv` in your Python environment.
+
     ``` bash
     pip install requests python-dotenv
     ```
