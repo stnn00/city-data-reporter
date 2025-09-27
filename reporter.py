@@ -97,7 +97,8 @@ def display_data(city_data):
         city_data (dict): Dictionary containing the city's key information.
     """
     if city_data:
-        print(f"\nCity: {city_data['city']}, {city_data['country']}")
+        print(f"\n--- Weather Report ---")
+        print(f"City: {city_data['city']}, {city_data['country']}")
         print(f"Temperature: {round(city_data['temperature'])}°C")
         print(f"Humidity: {city_data['humidity']}%")
         print(f"Description: {city_data['description'].capitalize()}")
@@ -131,7 +132,8 @@ def write_to_csv(city_data, filename=FILENAME):
                     city_data['description']  # Stores raw description without capitalization
                 ])
 
-            print(f"\nData for {city_data['city']} written to {filename} successfully.")
+            print(f"\n--- CVS Export ---")
+            print(f"Data for {city_data['city']} written to {filename} successfully.")
         except IOError as e:
             print(f"An error occurred while writing to CSV file: {e}")
     else:
@@ -154,7 +156,8 @@ def read_csv(filename=FILENAME):
             cities = list(reader)
         
         count = len(cities)
-        print(f"\nTotal number of cities in {filename}: {count}")
+        print(f"\n--- CVS Summary ---")
+        print(f"Total number of cities in {filename}: {count}")
 
         if count:
             print("Cities and their temperatures:")
