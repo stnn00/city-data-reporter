@@ -28,9 +28,9 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
 
 ## Installation
 
-1. **Install Python 3**
+1. **Install Python 3**.
 
-    Ensure Python 3 is installed on your system: [Python](https://www.python.org/downloads/)
+    Ensure [Python 3](https://www.python.org/downloads/) is installed on your system.
     
 2. **Install required third-party packages**:
 
@@ -50,7 +50,7 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
 
     ***     Do NOT share your API key publicly.***
 
-4. **Clone the repository**  
+4. **Clone the repository**.
    ```bash
    git clone https://github.com/stnn00/city-data-reporter.git
    cd city-data-reporter
@@ -65,6 +65,10 @@ Video on Youtube to demonstrate and explain code `reporter.py`:
     ```
 
 2. **Enter a city name when prompted.**
+    Example of Prompt:
+    ```text
+    Enter a city name:
+    ```
 
 3. **The program will**:
     - Display the city's key data to the terminal.
