@@ -22,7 +22,7 @@ All functionality is contained in a single Python Script: `reporter.py`
 
 Video on Youtube to demonstrate and explain code `reporter.py`:
 
-- *INSERT_LINK_HERE*
+- *[https://youtu.be/3_WlesDuUvY](https://youtu.be/3_WlesDuUvY)*
 
 ---
 
