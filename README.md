@@ -20,7 +20,7 @@ All functionality is contained in a single Python Script: `reporter.py`
 
 ## Demonstration
 
-Video on Youtube to demonstrate and explain code `reporter.py`:
+Video on YouTube (03:36) for demonstration purposes of `reporter.py`:
 
 - *[https://youtu.be/3_WlesDuUvY](https://youtu.be/3_WlesDuUvY)*
 
